@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ContactWeb.Models.Contact>
+
+@{
+    ViewBag.Title = "My Contacts";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="your_contacts" class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.GroupName)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>@Html.DisplayNameFor(model => model.PhonePrimary)</th>
+            @*<th>@Html.DisplayNameFor(model => model.PhoneSecondary)</th>
+            <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+            <th>@Html.DisplayNameFor(model => model.StreetAddress1)</th>
+            <th>@Html.DisplayNameFor(model => model.StreetAddress2)</th>*@
+            <th>@Html.DisplayNameFor(model => model.City)</th>
+            <th>@Html.DisplayNameFor(model => model.State)</th>
+            @*<th>@Html.DisplayNameFor(model => model.ZipCode)</th>*@
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.GroupName)</td>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhonePrimary)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.PhoneSecondary)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.StreetAddress1)</td>
+                <td>@Html.DisplayFor(modelItem => item.StreetAddress2)</td>*@
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                <td>@Html.DisplayFor(modelItem => item.State)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.ZipCode)</td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+                <td>@Html.HiddenFor(modelItem => item.UserId)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            
+            $("#your_contacts").DataTable({
+                "pagingType": "full_numbers"
+                        , "scrollY": "600px"
+                        , "columnDefs": [
+                            { "width": "45px", "targets": 0 }
+                            , { "width": "45px", "targets": 1 }
+                            , { "width": "45px", "targets": 2 }
+                            , { "width": "45px", "targets": 3 }
+                            , { "width": "45px", "targets": 4 }
+                            //, { "visible": false, "width": "45px", "targets": 5 }
+                            //, { "visible": false, "width": "45px", "targets": 6 }
+                            //, { "visible": false, "width": "45px", "targets": 7 }
+                            //, { "visible": false, "width": "45px", "targets": 8 }
+                            , { "width": "45px", "targets": 5 }
+                            , { "width": "45px", "targets": 6 }
+                            //, { "visible": false, "width": "45px", "targets": 11 }
+                            , { "width": "160px", "bSortable": false, "targets": 7 }
+                            , { "width": "10px", "bSortable": false, "targets": 8 }
+                        ]
+                        
+                        , "order": [[2, "desc"]]
+                        , "dom": 'Rlfrtip'
+                        , "stateSave": "true"
+                        , "lengthMenu": [[-1, 10, 20, 50, 100], ["All", 10, 20, 50, 100]]
+            });
+        });
+
+
+    </script>
+}
+
+
+
+
