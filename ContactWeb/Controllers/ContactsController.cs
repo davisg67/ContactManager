@@ -22,10 +22,6 @@ namespace ContactWeb.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            //ViewBag.Groups = dbGroups.Groups.ToList();
-
-            //try
-            //{
             //    var userId = new Guid(User.Identity.GetUserId());
             //    var userName = User.Identity.GetUserName();
 
@@ -34,14 +30,7 @@ namespace ContactWeb.Controllers
 
             //    ViewData["UserId"] = userId;
             //    ViewData["UserName"] = userName;
-            //}
-            //catch (System.Exception ex)
-            //{
-
-            //}
-
             
-
             var userId = GetCurrentUserId();
             //Only get the contact records for the logged in user.
             return View(db.Contacts.Where(x => x.UserId == userId).ToList());
@@ -60,6 +49,7 @@ namespace ContactWeb.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(contact);
         }
 
@@ -67,17 +57,7 @@ namespace ContactWeb.Controllers
         [Authorize]
         public ActionResult Create()
         {
-
             ViewBag.UserId = GetCurrentUserId();
-
-            //var model = new GroupModel()
-            //{
-            //    Groups = dbGroups.GroupModels.Select(c => new SelectListItem
-            //    {
-            //        Value = c.Id.ToString(),
-            //        Text = c.Group
-            //    })
-            //};
             
             SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
             ViewBag.GroupValues = list;
@@ -96,9 +76,21 @@ namespace ContactWeb.Controllers
             if (ModelState.IsValid)
             {
                 if (contact.GroupName == "-Select-") { contact.GroupName = String.Empty; }
+
+                if (!contact.BirthDate.HasValue)
+                {
+                    contact.BirthDate = null; //No date, set to null.
+                }
+                
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                //If validation error reload dropdown.
+                SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+                ViewBag.GroupValues = list;
             }
 
             ViewBag.UserId = GetCurrentUserId();
@@ -114,47 +106,16 @@ namespace ContactWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
-            //string groupID = "0";
-            //foreach (GroupModel record in dbGroups.GroupModels)
-            //{
-            //    if (record.Group == contact.GroupName)
-            //    {
-            //        groupID = record.Id.ToString();
-            //    }
-            //}
             
             if (contact == null || !EnsureIsUserContact(contact))
             {
                 return HttpNotFound();
             }
 
-            //var vm = new Contact();
-            //vm.GroupName = contact.GroupName; 
-
+           
             SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
             ViewBag.GroupValues = list;
-
-            //SelectList list = new SelectList(dbGroups.GroupModels.ToList(), "Id", "Group", groupID);
             
-            //foreach (SelectListItem item in list)
-            //{
-            //    if (item.Text == contact.GroupName)
-            //    {
-            //        item.Selected = true;
-            //        break;
-            //    };
-            //}
-
-            //ViewBag.GroupValues = list;
-
-            //if (String.IsNullOrEmpty(contact.GroupName))
-            //{
-            //    ViewBag.SelectedItem = "-Select-";
-            //}
-            //else
-            //{
-            //    ViewBag.SelectedItem = contact.GroupName;
-            //};
             
             ViewBag.UserId = GetCurrentUserId();
             return View(contact);
@@ -170,14 +131,21 @@ namespace ContactWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                //string g = contact.GroupName;
-                
+                if (!contact.BirthDate.HasValue)
+                {
+                    contact.BirthDate = null; //No date, set to null.
+                }
 
                 db.Entry(contact).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            else
+            {
+                //If validation error reload dropdown.
+                SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+                ViewBag.GroupValues = list;
+            }
 
             ViewBag.UserId = GetCurrentUserId();
             return View(contact);

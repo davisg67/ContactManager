@@ -15,8 +15,7 @@ namespace ContactWeb.Migrations
 
         protected override void Seed(ContactWeb.Models.ContactWebContext context)
         {
-            /*572f9704-cf6b-46d0-ac76-8a72daeb87a9 FB
-             953cd796-8c7c-4057-9b8b-4e9c3c44ba95 local*/
+            /*953cd796-8c7c-4057-9b8b-4e9c3c44ba95 local test*/
 
             //  This method will be called after migrating to the latest version.
 
@@ -51,7 +50,7 @@ namespace ContactWeb.Migrations
                     StreetAddress1 = "Sickbay",
                     StreetAddress2 = "Starship Enterprise NCC-1701"
                                     ,
-                    UserId = new Guid("572f9704-cf6b-46d0-ac76-8a72daeb87a9")
+                    UserId = new Guid("953cd796-8c7c-4057-9b8b-4e9c3c44ba95")
                                     ,
                     ZipCode = "98765"
                 }
@@ -72,7 +71,7 @@ namespace ContactWeb.Migrations
                     StreetAddress1 = "Engineering",
                     StreetAddress2 = "Starship Enterprise NCC-1701"
                                     ,
-                    UserId = new Guid("572f9704-cf6b-46d0-ac76-8a72daeb87a9")
+                    UserId = new Guid("953cd796-8c7c-4057-9b8b-4e9c3c44ba95")
                                     ,
                     ZipCode = "87654"
                     

@@ -15,7 +15,7 @@ namespace ContactWeb.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
         
-        //name=GroupContext
+        
         public GroupContext() : base("name=ContactWebContext")
         {
         }

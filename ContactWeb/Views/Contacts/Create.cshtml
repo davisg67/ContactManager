@@ -24,10 +24,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" style="padding-top: 10px;">
-                @*@Html.DropDownList("ContactGroup", ViewBag.GroupValues as SelectList)*@
-                @*@Html.DropDownList("GroupValues")*@
-                @*@Html.DropDownList("ContactGroup", ViewBag.GroupValues as SelectList, "-Select-")*@
-
                 @Html.DropDownListFor(model => model.GroupName, (SelectList)ViewBag.GroupValues, "-Select-")
             </div>
         </div>
