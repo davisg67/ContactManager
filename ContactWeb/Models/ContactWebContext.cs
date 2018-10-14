@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactWeb.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,12 +15,27 @@ namespace ContactWeb.Models
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
+
         public ContactWebContext() : base("name=ContactWebContext")
         {
+            
         }
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContactWeb.Models.ContactWebContext, Configuration>());
+        }
+
+
+
+
         public System.Data.Entity.DbSet<ContactWeb.Models.Contact> Contacts { get; set; }
-        
+        public System.Data.Entity.DbSet<ContactWeb.Models.GroupModel> GroupModels { get; set; }
+
     }
 }

@@ -10,11 +10,12 @@ namespace ContactWeb.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = false;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ContactWeb.Models.ContactWebContext context)
         {
+
             /*953cd796-8c7c-4057-9b8b-4e9c3c44ba95 local test*/
 
             //  This method will be called after migrating to the latest version.
@@ -29,6 +30,40 @@ namespace ContactWeb.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.GroupModels.AddOrUpdate(
+                p => p.Id,
+                new Models.GroupModel
+                {
+                    Id = 1,
+                    Group = "Family"
+                },
+                new Models.GroupModel
+                {
+                    Id = 2,
+                    Group = "Work"
+                },
+                new Models.GroupModel
+                {
+                    Id = 3,
+                    Group = "Friends"
+                },
+                new Models.GroupModel
+                {
+                    Id = 4,
+                    Group = "Services"
+                },
+                new Models.GroupModel
+                {
+                    Id = 5,
+                    Group = "Emergency"
+                },
+                new Models.GroupModel
+                {
+                    Id = 6,
+                    Group = "Other"
+                }
+            );
 
 
             context.Contacts.AddOrUpdate(
@@ -121,6 +156,10 @@ namespace ContactWeb.Migrations
                     GroupName = "Work"
                 }
             );
+
+            
+
+
         }
     }
 }

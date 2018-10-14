@@ -161,3 +161,5 @@ E:\Git-Repos\ContactWeb\ContactWeb\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Git-Repos\ContactWeb\ContactWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Git-Repos\ContactWeb\ContactWeb\obj\Debug\ContactWeb.dll
 E:\Git-Repos\ContactWeb\ContactWeb\obj\Debug\ContactWeb.pdb
+E:\Git-Repos\ContactWeb\ContactWeb\obj\Debug\ContactWeb.Migrations.Initial.resources
+E:\Git-Repos\ContactWeb\ContactWeb\obj\Debug\ContactWeb.csproj.GenerateResource.Cache

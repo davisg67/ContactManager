@@ -15,7 +15,7 @@ namespace ContactWeb.Controllers
     public class ContactsController : Controller
     {
         private ContactWebContext db = new ContactWebContext();
-        private GroupContext dbGroups = new GroupContext();
+        //private GroupContext dbGroups = new GroupContext();
         
 
         // GET: Contacts
@@ -59,10 +59,10 @@ namespace ContactWeb.Controllers
         {
             ViewBag.UserId = GetCurrentUserId();
             
-            SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+            SelectList list = new SelectList(db.GroupModels, "Group", "Group");
             ViewBag.GroupValues = list;
-            
-            return View();
+
+            return View(); 
         }
 
         // POST: Contacts/Create
@@ -89,7 +89,7 @@ namespace ContactWeb.Controllers
             else
             {
                 //If validation error reload dropdown.
-                SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+                SelectList list = new SelectList(db.GroupModels, "Group", "Group");
                 ViewBag.GroupValues = list;
             }
 
@@ -113,7 +113,7 @@ namespace ContactWeb.Controllers
             }
 
            
-            SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+            SelectList list = new SelectList(db.GroupModels, "Group", "Group");
             ViewBag.GroupValues = list;
             
             
@@ -143,7 +143,7 @@ namespace ContactWeb.Controllers
             else
             {
                 //If validation error reload dropdown.
-                SelectList list = new SelectList(dbGroups.GroupModels, "Group", "Group");
+                SelectList list = new SelectList(db.GroupModels, "Group", "Group");
                 ViewBag.GroupValues = list;
             }
 

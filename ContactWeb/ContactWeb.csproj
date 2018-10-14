@@ -201,11 +201,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
-    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810140222297_Initial.cs" />
+    <Compile Include="Migrations\201810140222297_Initial.Designer.cs">
+      <DependentUpon>201810140222297_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationDbConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -213,7 +216,6 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactWebContext.cs" />
     <Compile Include="Models\GroupModel.cs" />
-    <Compile Include="Models\GroupContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,11 +322,11 @@
     <Content Include="Views\Contacts\Details.cshtml" />
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
-    <Content Include="Views\Groups\Create.cshtml" />
-    <Content Include="Views\Groups\Delete.cshtml" />
-    <Content Include="Views\Groups\Details.cshtml" />
-    <Content Include="Views\Groups\Edit.cshtml" />
-    <Content Include="Views\Groups\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810140222297_Initial.resx">
+      <DependentUpon>201810140222297_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

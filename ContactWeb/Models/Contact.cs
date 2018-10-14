@@ -52,6 +52,7 @@ namespace ContactWeb.Models
 
         [DisplayName("Zip")]
         public string ZipCode { get; set; }
+        
     }
 
     
